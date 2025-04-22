@@ -24,7 +24,7 @@ pip install another-sender
 Or for development:
 
 ```bash
-git clone https://github.com/yourusername/another-sender.git
+git clone https://github.com/minipcb/another-sender.git
 cd another-sender
 pip install -e .
 ```
