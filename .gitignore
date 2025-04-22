@@ -1,0 +1,62 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+*.env
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# PyInstaller
+*.spec
+
+# Logs & dumps
+*.log
+*.dump
+version_bump.log
+
+# Editor-specific
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Test / coverage
+htmlcov/
+.tox/
+.coverage
+.pytest_cache/
+.cache/
+nosetests.xml
+coverage.xml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Project-specific config
+#udp_config.json
+#command.meta.json
+
+# Python packaging artifacts
+.Python
+pip-wheel-metadata/
+
+# Wheel cache
+*.whl
+
+# Git-specific
+*.orig
+
+# Ignore your README download if generated dynamically
+README.md~

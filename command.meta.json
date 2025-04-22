@@ -1,0 +1,6 @@
+{
+  "mode": "UDP",
+  "delay": 2,
+  "command_folder": "default",
+  "parser": "text"
+}
