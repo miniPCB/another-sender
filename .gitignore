@@ -45,8 +45,8 @@ coverage.xml
 Thumbs.db
 
 # Project-specific config
-#udp_config.json
-#command.meta.json
+udp_config.json
+command.meta.json
 
 # Python packaging artifacts
 .Python
