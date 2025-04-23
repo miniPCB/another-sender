@@ -1,5 +1,8 @@
 from setuptools import setup, find_packages
 
+with open("README.md", encoding="utf-8") as f:
+    long_description = f.read()
+
 setup(
     name="another-sender",
     version="0.1.1",
@@ -13,7 +16,7 @@ setup(
     },
     author="Nolan Manteufel",
     description="CLI to send command files over UDP, SPI, and more.",
-    long_description=open("README.md").read(),
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/minipcb/another-sender",
     classifiers=[
