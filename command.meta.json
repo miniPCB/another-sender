@@ -1,6 +1,6 @@
 {
   "mode": "UDP",
-  "delay": 2,
+  "delay": 0.02,
   "command_folder": "default",
-  "parser": "text"
+  "parser": "hex"
 }
