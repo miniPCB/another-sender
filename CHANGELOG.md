@@ -14,3 +14,5 @@
 ## [0.1.3] - 2025-04-22
 ### Fixed
 - Fixed bug in bump_version.py
+
+## [0.1.4] - 2025-04-22
