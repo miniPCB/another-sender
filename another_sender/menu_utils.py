@@ -14,12 +14,20 @@ def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
     print(ascii_header)
 
-def print_current_config(version, mode, parser, delay, folder):
-    """Print current configuration in a consistent format."""
-    print(f"Version: {version}")
-    print(f"Mode: {mode}    Parser: {parser}    Delay: {delay}s")
-    print(f"Folder: {folder}")
-    print("-" * 40)
+def print_current_config(version, mode, parser, delay, folder, connection_info=None):
+    print(f"🛠️  Version: {version}")
+    print(f"📡 Mode: {mode}")
+
+    if connection_info:
+        print("🔌 Connection:")
+        for key, value in connection_info.items():
+            print(f"   {key}: {value}")
+
+    print(f"🧩 Parser: {parser}")
+    print(f"⏱️  Delay: {delay} sec")
+    print(f"📂 Folder: {folder}")
+    print("---")
+
 
 def change_command_folder(list_subfolders, set_command_subfolder):
     """Allow user to select a subfolder inside 'commands/'."""
