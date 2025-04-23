@@ -10,3 +10,7 @@
 - Resend from History (R): View a numbered list of recently sent commands.
 ### Changed
 - Improved setup.py: Fixed UnicodeDecodeError on install by adding encoding="utf-8" to README.md loading.
+
+## [0.1.3] - 2025-04-22
+### Fixed
+- Fixed bug in bump_version.py
