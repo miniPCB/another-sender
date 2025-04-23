@@ -2,6 +2,7 @@
 
 import os
 import socket
+import datetime
 import json
 import time
 from pathlib import Path
@@ -22,6 +23,27 @@ SUPPORTED_PARSERS = ["text", "hex", "json"]
 
 # --- Runtime State ---
 CURRENT_SUBFOLDER = ""
+
+LOG_FILE = "received_packets.log"
+
+def start_receive_mode(listen_ip="0.0.0.0", listen_port=5005):
+    print(f"\n📡 Listening for UDP packets on {listen_ip}:{listen_port} ... (Ctrl+C to stop)\n")
+
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock, open(LOG_FILE, "a") as log_file:
+        sock.bind((listen_ip, listen_port))
+        try:
+            while True:
+                data, addr = sock.recvfrom(4096)
+                timestamp = datetime.datetime.now().isoformat(timespec='seconds')
+                hex_data = data.hex(' ')
+                message = f"[{timestamp}] From {addr[0]}:{addr[1]} | {hex_data}"
+
+                print(message)
+                log_file.write(message + "\n")
+                log_file.flush()
+        except KeyboardInterrupt:
+            print("\n🛑 Receive mode stopped.")
+
 
 # --- Meta Config Helpers ---
 def load_meta_config():
