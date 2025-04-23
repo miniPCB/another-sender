@@ -60,3 +60,10 @@ pip-wheel-metadata/
 
 # Ignore your README download if generated dynamically
 README.md~
+
+# Commands folder(s)
+commands/*
+!commands/.gitkeep
+
+# For using another-gitgpt
+secrets.json
