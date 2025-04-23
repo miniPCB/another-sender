@@ -2,6 +2,8 @@
 
 import os
 import socket
+import sys
+import signal
 import datetime
 import json
 import time
@@ -27,12 +29,23 @@ CURRENT_SUBFOLDER = ""
 LOG_FILE = "received_packets.log"
 
 def start_receive_mode(listen_ip="0.0.0.0", listen_port=5005):
-    print(f"\n📡 Listening for UDP packets on {listen_ip}:{listen_port} ... (Ctrl+C to stop)\n")
+    print(f"\n📡 Listening for UDP packets on {listen_ip}:{listen_port} ... (Press Ctrl+C to stop)\n")
+
+    running = True
+
+    def handle_sigint(sig, frame):
+        nonlocal running
+        running = False
+        print("\n🛑 Receive mode interrupted. Exiting...\n")
+
+    signal.signal(signal.SIGINT, handle_sigint)
 
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock, open(LOG_FILE, "a") as log_file:
         sock.bind((listen_ip, listen_port))
-        try:
-            while True:
+        sock.settimeout(1.0)  # ⏱️ Prevents blocking forever
+
+        while running:
+            try:
                 data, addr = sock.recvfrom(4096)
                 timestamp = datetime.datetime.now().isoformat(timespec='seconds')
                 hex_data = data.hex(' ')
@@ -41,8 +54,11 @@ def start_receive_mode(listen_ip="0.0.0.0", listen_port=5005):
                 print(message)
                 log_file.write(message + "\n")
                 log_file.flush()
-        except KeyboardInterrupt:
-            print("\n🛑 Receive mode stopped.")
+            except socket.timeout:
+                continue  # 🔁 check if still running
+            except Exception as e:
+                print(f"❌ Error during receive: {e}")
+                break
 
 
 # --- Meta Config Helpers ---
