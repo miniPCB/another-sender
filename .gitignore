@@ -67,3 +67,8 @@ commands/*
 
 # For using another-gitgpt
 secrets.json
+
+command.history.json
+command.meta.json
+config.json
+udp_config.json
