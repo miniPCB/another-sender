@@ -1,0 +1,12 @@
+{
+  "favorites": [
+    {
+      "path": "C:\\Repos\\another-sender",
+      "type": "generic"
+    }
+  ],
+  "repo_types": {
+    "eagle": "EAGLE PCB design repo",
+    "generic": "General-purpose code repo"
+  }
+}
