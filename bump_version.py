@@ -87,7 +87,7 @@ def git_commit_and_tag(version):
         subprocess.run(["git", "commit", "-m", f"v{version} release"], check=True)
         subprocess.run(["git", "tag", f"v{version}"], check=True)
         subprocess.run(["git", "push"], check=True)
-        subprocess.run(["git", "push", "--tags"], check=True)
+        subprocess.run(["git", "push", "origin", f"v{version}"], check=True)
         logging.info(f"Git commit and tag created for v{version}")
         print("🚀 Git commit, tag, and push completed.")
     except subprocess.CalledProcessError as e:
