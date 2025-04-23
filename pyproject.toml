@@ -17,10 +17,10 @@ classifiers = [
   "Operating System :: OS Independent",
 ]
 
+dependencies = []
+
 [project.scripts]
 another-sender = "another_sender.cli:main"
-
-dependencies = []
 
 [project.urls]
 Homepage = "https://github.com/miniPCB/another-sender"
