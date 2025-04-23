@@ -83,6 +83,7 @@ def main_menu(udp_ip, udp_port, delay):
         print("P. Change parser type")
         print("H. View command history")
         print("R. Resend from history")
+        print("V. Start receive mode")
         print("Q. Quit")
 
         choice = input("\nSelect a file number to send or choose an option: ").strip().lower()
@@ -165,6 +166,39 @@ def main_menu(udp_ip, udp_port, delay):
                         print(f"❌ Resend not implemented for mode: {mode}")
             except (ValueError, IndexError):
                 print("❌ Invalid input.")
+        elif choice == 'v':
+            try:
+                from another_sender.udp_utils import start_receive_mode
+                import socket
+
+                def list_local_ips():
+                    hostname = socket.gethostname()
+                    try:
+                        ips = socket.gethostbyname_ex(hostname)[2]
+                        ips = list({ip for ip in ips if '.' in ip})
+                        ips.sort()
+                    except Exception:
+                        ips = []
+                    return ips
+
+                interfaces = list_local_ips()
+                print("\n📡 Select interface to listen on:")
+                for i, ip in enumerate(interfaces, 1):
+                    print(f"  {i}. {ip}")
+                print("  0. All interfaces (0.0.0.0)")
+
+                selection = input("\nEnter number: ").strip()
+                if selection == "0" or not selection:
+                    local_ip = "0.0.0.0"
+                else:
+                    index = int(selection) - 1
+                    local_ip = interfaces[index] if 0 <= index < len(interfaces) else "0.0.0.0"
+
+                local_port = config.get("udp_port", 5005)
+                start_receive_mode(local_ip, local_port)
+
+            except Exception as e:
+                print(f"❌ Failed to start receive mode: {e}")
         else:
             try:
                 file_idx = int(choice) - 1
